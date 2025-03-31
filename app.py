@@ -235,5 +235,15 @@ async def custom_swagger_ui_html():
     """
     return FileResponse(path="/docs")
 
+
+# Ambiente de desenvolvimento
+# if __name__ == "__main__":
+#     uvicorn.run("app:app", host="127.0.0.1", port=8000, reload=True)
+
+# Ambiente de Prod
 if __name__ == "__main__":
-    uvicorn.run("app:app", host="127.0.0.1", port=8000, reload=True)
+   
+    import uvicorn
+    port = int(os.environ.get("PORT", 8000))
+    host = "0.0.0.0"
+    uvicorn.run("app:app", host=host, port=port, reload=True)
